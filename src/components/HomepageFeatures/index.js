@@ -27,8 +27,7 @@ const FeatureList = [
     Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
     description: (
       <>
-        Extend or customize your website layout by reusing React. Docusaurus can
-        be extended while reusing the same header and footer.
+        My name is Adrian Filiński and I'm Salesforce Marketing Cloud Consultant & Marketing Automation Expert
       </>
     ),
   },
