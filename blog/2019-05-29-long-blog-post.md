@@ -1,7 +1,7 @@
 ---
 slug: long-blog-post
 title: Sample blog post
-authors: endi
+authors: Adrian
 tags: [hello, docusaurus]
 ---
 
