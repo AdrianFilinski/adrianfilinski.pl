@@ -27,7 +27,25 @@ const FeatureList = [
     Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
     description: (
       <>
-        My name is Adrian Filiński and I'm Salesforce Marketing Cloud Consultant & Marketing Automation Expert
+        My name is Adrian Filiński and I'm Salesforce Marketing Cloud Developer
+      </>
+    ),
+  },
+  {
+    title: 'Powered by React',
+    Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
+    description: (
+      <>
+        My name is Adrian Filiński and I'm Salesforce Marketing Cloud Developer
+      </>
+    ),
+  },
+  {
+    title: 'Powered by React',
+    Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
+    description: (
+      <>
+        My name is Adrian Filiński and I'm Salesforce Marketing Cloud Developer
       </>
     ),
   },

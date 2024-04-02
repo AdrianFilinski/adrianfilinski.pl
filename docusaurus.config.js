@@ -6,8 +6,8 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'My Site',
-  tagline: 'Dinosaurs are cool',
+  title: 'Marketing Cloud Developer Handbook',
+  tagline: 'Collection helpfully materials about AMP, SSJS and other key',
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
@@ -74,7 +74,13 @@ const config = {
             type: 'docSidebar',
             sidebarId: 'tutorialSidebar',
             position: 'right',
-            label: 'O mnie',
+            label: 'About',
+          },
+          {
+            type: 'docSidebar',
+            sidebarId: 'tutorialSidebar',
+            position: 'right',
+            label: 'About',
           },
           {to: '/blog', label: 'Blog', position: 'left'},
           {
@@ -109,6 +115,10 @@ const config = {
               },
               {
                 label: 'GitHub',
+                href: 'https://github.com/AdrianFilinski',
+              },
+              {
+                label: 'Salesforce',
                 href: 'https://github.com/AdrianFilinski',
               },
             ],

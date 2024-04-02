@@ -18,12 +18,12 @@ function HomepageHeader() {
           <Link
             className="button button--secondary button--lg"
             to="/docs/intro">
-            Developer ⏱️
+            Let's dive in! ⏱
           </Link>
         </div>
       </div>
     </header>
-  );
+  );        
 }
 
 export default function Home() {
