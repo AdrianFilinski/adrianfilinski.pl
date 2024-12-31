@@ -1,7 +1,6 @@
 ---
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import { ViewTransitions } from 'astro:transitions';
 
 interface Props {
 	title: string;
@@ -16,10 +15,9 @@ const { title } = Astro.props;
 		<meta charset="UTF-8" />
 		<meta name="description" content="Adrian's personal blog and portfolio" />
 		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCAxNDAwIDk5MiIgd2lkdGg9IjM1MCIgaGVpZ2h0PSIyNDgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxwYXRoIHRyYW5zZm9ybT0idHJhbnNsYXRlKDApIiBkPSJtMCAwaDE0MDB2OTkyaC0xNDAweiIvPgo8cGF0aCB0cmFuc2Zvcm09InRyYW5zbGF0ZSg3OTIsMTkyKSIgZD0ibTAgMGg5NXYzbC0xMSAyNS0xNyA0MS02IDE1LTUgMTEtMzYgODYtMzIgNzYtMTEgMjYtMjAgNDgtMTQgMzMtMTggNDMtMTkgNDUtMzEgNzQtMTYgMzgtMTggNDMtNSAxMS0xIDFoLTk2bDItNiAxNy00MCAxMi0yOSAxOS00NSAxOC00MyAxMS0yNiAxOC00MyAxNi0zOCAxOC00MyAxOS00NSAxOC00MyAxMS0yNiAxOC00MyAxNi0zOCAxOC00MyAxOS00NSA5LTIxeiIgZmlsbD0iI0ZFRkVGRSIvPgo8cGF0aCB0cmFuc2Zvcm09InRyYW5zbGF0ZSg0NzgsMjk2KSIgZD0ibTAgMGg0djg1bC0yIDUtMzkgMTUtOTcgMzgtNjkgMjctMTggNyAzIDIgMzIgMTIgMjggMTEgMTA0IDQwIDU0IDIxIDQgM3Y4OGwtOS0zLTQ1LTE4LTEyOC01Mi0xMjgtNTItMzQtMTQtMi0ydi03M2wxMC01IDQ2LTE5IDMwLTEyIDU0LTIyIDEzMy01NCA1NS0yMnoiIGZpbGw9IiNGRUZFRkUiLz4KPHBhdGggdHJhbnNmb3JtPSJ0cmFuc2xhdGUoOTM4LDI5NikiIGQ9Im0wIDAgNSAxIDM1IDE0IDM3IDE1IDIwNyA4NCA0OSAyMCAxMiA1IDEgMTAtMSA2NS0xMSA1LTMyIDEzLTEyOCA1Mi0xMDEgNDEtNjIgMjUtMTEgNHYtODlsOC00IDE1My01OSAyNi0xMCAzNS0xM2gzdi0ybC05LTMtMjctMTEtNDktMTktMTM4LTU0LTItMnoiIGZpbGw9IiNGRUZFRkUiLz4KPC9zdmc+Cg==">
+		<link rel="icon" type="image/svg+xml" href="/public/adrianfav.png" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
-		<ViewTransitions />
 		<script is:inline>
 			// Handle initial theme
 			const theme = (() => {
