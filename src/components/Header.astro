@@ -1,0 +1,25 @@
+---
+import ThemeToggle from './ThemeToggle.astro';
+---
+
+<header class="border-b dark:border-gray-700 py-4">
+	<div class="container mx-auto px-4 flex justify-between items-center adrianlogo">
+		<a href="/" class="text-2xl font-bold">
+			<img 
+			src="/public/adrianlightmode.png" 
+			alt="Logo" 
+			class="h-10 dark:hidden"
+		/>
+		<img 
+			src="/public/adriandarkmode.png" 
+			alt="Logo" 
+			class="h-10 hidden dark:block"
+		/>
+		</a>
+		<nav class="flex items-center gap-6">
+			<a href="/about" class="hover:text-blue-500">About</a>
+			<a href="/blog" class="hover:text-blue-500">Blog</a>
+			<ThemeToggle />
+		</nav>
+	</div>
+</header>

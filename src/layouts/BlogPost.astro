@@ -1,0 +1,189 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import CopyButton from '../components/CopyButton.astro';
+const { frontmatter } = Astro.props;
+
+// Format the date
+const formattedDate = new Date(frontmatter.date).toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+});
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{frontmatter.title}</title>
+  </head>
+  <body class="dark:bg-gray-900 dark:text-white min-h-screen">
+    <Header />
+    
+    <main class="container mx-auto px-4 py-8 max-w-4xl">
+      <!-- Blog Header -->
+      <div class="mb-8">
+        <h1 class="text-4xl font-bold mb-4">{frontmatter.title}</h1>
+        <div class="flex gap-4 items-center text-gray-600 dark:text-gray-400 mb-6">
+          <time datetime={frontmatter.date}>{formattedDate}</time>
+          <div class="flex gap-2">
+            {frontmatter.tags.map((tag: string) => (
+              <span class="bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded-md text-sm">
+                {tag}
+              </span>
+            ))}
+          </div>
+        </div>
+        {frontmatter.image && (
+          <img 
+            src={frontmatter.image} 
+            alt={frontmatter.title}
+            class="w-full h-[400px] object-cover rounded-lg mb-8"
+          />
+        )}
+        {frontmatter.description && (
+          <p class="text-xl text-gray-600 dark:text-gray-400 mb-8">
+            {frontmatter.description}
+          </p>
+        )}
+      </div>
+
+      <!-- Blog Content -->
+      <article class="prose dark:prose-invert max-w-none
+        prose-headings:font-bold 
+        prose-h1:text-3xl 
+        prose-h2:text-2xl 
+        prose-h3:text-xl
+        prose-p:text-gray-600 dark:prose-p:text-gray-400
+        prose-li:text-gray-600 dark:prose-li:text-gray-400
+        prose-strong:text-gray-900 dark:prose-strong:text-white
+        prose-img:rounded-lg
+        prose-a:text-blue-600 dark:prose-a:text-blue-400
+        prose-pre:bg-gray-100 dark:prose-pre:bg-gray-800
+        prose-code:text-blue-600 dark:prose-code:text-blue-400
+      ">
+        <slot />
+      </article>
+      <CopyButton />
+    </main>
+
+    <Footer />
+  </body>
+</html>
+
+<style is:global>
+  /* Additional styles for markdown content */
+  .prose h1,
+  .prose h2,
+  .prose h3,
+  .prose h4 {
+    margin-top: 2em;
+    margin-bottom: 1em;
+  }
+
+  .prose p {
+    margin-bottom: 1.5em;
+    line-height: 1.8;
+  }
+
+  .prose ul,
+  .prose ol {
+    margin-top: 1em;
+    margin-bottom: 1em;
+    padding-left: 1.5em;
+  }
+
+  .prose li {
+    margin-bottom: 0.5em;
+  }
+
+  .prose pre {
+    padding: 1.5em;
+    border-radius: 0.5rem;
+    margin: 1.5em 0;
+  }
+
+  .prose code {
+    padding: 0.2em 0.4em;
+    border-radius: 0.25rem;
+    font-size: 0.875em;
+  }
+
+  /* Add these new styles for code blocks */
+  .prose pre {
+    position: relative;
+    padding: 2.5em 1.5em 1.5em; /* Extra padding on top for copy button */
+    border-radius: 0.5rem;
+    margin: 1.5em 0;
+    background-color: #1e1e1e;
+    overflow-x: auto;
+  }
+
+  .prose code {
+    font-family: 'Fira Code', monospace;
+    font-size: 0.875em;
+  }
+
+  .prose pre code {
+    color: #fff;
+    padding: 0;
+    background: none;
+    border-radius: 0;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
+    line-height: 1.5;
+    tab-size: 4;
+    hyphens: none;
+  }
+
+  /* Inline code style */
+  .prose :not(pre) > code {
+    background-color: #f1f1f1;
+    /* Fix: Add proper dark mode syntax */
+    @media (prefers-color-scheme: dark) {
+      background-color: #2d2d2d;
+    }
+    padding: 0.2em 0.4em;
+    border-radius: 0.25rem;
+    font-size: 0.875em;
+    white-space: nowrap;
+  }
+
+  /* Language tag style */
+  .prose pre::before {
+    content: attr(data-language);
+    position: absolute;
+    top: 0.5em;
+    left: 1em;
+    font-size: 0.75em;
+    color: #999;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  /* Copy button positioning */
+  .prose pre .copy-button {
+    position: absolute;
+    top: 0.5em;
+    right: 1em;
+  }
+
+  /* Scrollbar styling */
+  .prose pre::-webkit-scrollbar {
+    height: 8px;
+    background-color: #1e1e1e;
+  }
+
+  .prose pre::-webkit-scrollbar-thumb {
+    background-color: #4a4a4a;
+    border-radius: 4px;
+  }
+
+  .prose pre::-webkit-scrollbar-track {
+    background-color: #2d2d2d;
+    border-radius: 4px;
+  }
+</style>

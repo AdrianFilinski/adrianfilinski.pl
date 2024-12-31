@@ -1,0 +1,37 @@
+---
+---
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const codeBlocks = document.querySelectorAll('pre > code');
+  
+      codeBlocks.forEach((code) => {
+        // Dodaj kontener pre jako "group" do obsługi przycisku kopiowania
+        const pre = code.parentElement;
+        pre.classList.add('relative', 'group');
+  
+        const copyButton = document.createElement('button');
+        copyButton.className =
+          'copy-button absolute right-4 top-4 p-2 rounded-lg bg-gray-700 text-gray-100 opacity-0 group-hover:opacity-100 transition-opacity';
+        const span = document.createElement('span');
+        span.className = 'copy-text';
+        span.textContent = 'Copy';
+  
+        copyButton.appendChild(span);
+        pre.appendChild(copyButton);
+  
+        copyButton.addEventListener('click', async () => {
+          const text = code.textContent || '';
+  
+          try {
+            await navigator.clipboard.writeText(text);
+            span.textContent = 'Copied!';
+            setTimeout(() => {
+              span.textContent = 'Copy';
+            }, 2000);
+          } catch (err) {
+            console.error('Failed to copy:', err);
+          }
+        });
+      });
+    });
+  </script>

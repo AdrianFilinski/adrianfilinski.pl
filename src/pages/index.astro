@@ -1,0 +1,108 @@
+---
+import Layout from '../layouts/Layout.astro';
+import BlogPostCard from '../components/BlogPostCard.astro';
+
+const posts = await Astro.glob('./blog/*.md');
+const latestPosts = posts.sort((a, b) => new Date(b.frontmatter.date).getTime() - new Date(a.frontmatter.date).getTime()).slice(0, 3);
+---
+
+<Layout title="Adrian's Blog">
+	<main class="container mx-auto px-4">
+		<!-- Hero Section -->
+		<section class="py-20 text-center">
+			<img 
+				src="/hero-image.jpg" 
+				alt="Blog hero image" 
+				class="w-full h-[400px] object-cover rounded-lg mb-8"
+			/>
+			<div class="text-center my-10">
+				<h1 id="dynamic-header" class="text-4xl font-bold mb-4"></h1>
+				<p id="dynamic-paragraph" class="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto"></p>
+			  </div>
+		</section>
+
+		<!-- Latest Posts Section -->
+		<section class="py-12">
+			<h2 class="text-3xl font-bold mb-8">Latest Posts</h2>
+			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+				{latestPosts.map((post) => (
+					<BlogPostCard 
+						title={post.frontmatter.title}
+						description={post.frontmatter.description}
+						date={post.frontmatter.date}
+						image={post.frontmatter.image}
+						tags={post.frontmatter.tags}
+						url={post.url}
+					/>
+				))}
+			</div>
+		</section>
+	</main>
+</Layout>
+<script>
+	document.addEventListener("DOMContentLoaded", () => {
+	  const headerText = "Welcome to My Personal Blog";
+	  const paragraphText = "Exploring technology, sharing insights, and documenting my journey through web development, Salesforce, and more.";
+  
+	  const headerElement = document.getElementById("dynamic-header");
+	  const paragraphElement = document.getElementById("dynamic-paragraph");
+  
+	  // Sprawdź, czy kliknięto logo - jeżeli tak, to nie generuj dynamicznego tekstu
+	  const logoClicked = localStorage.getItem("logoClicked");
+  
+	  // Jeśli logo nie zostało kliknięte, zaczynamy generowanie tekstu
+	  if (!logoClicked) {
+		let headerIndex = 0;
+		let paragraphIndex = 0;
+		
+		const typeSpeed = { header: 100, paragraph: 50 };
+  
+		// Funkcja do dynamicznego wprowadzania tekstu w nagłówku
+		function typeHeader() {
+		  if (headerIndex < headerText.length) {
+			headerElement.textContent += headerText[headerIndex];
+			headerIndex++;
+			setTimeout(typeHeader, typeSpeed.header);
+		  } else {
+			localStorage.setItem("headerCompleted", headerElement.textContent);
+			typeParagraph(); // Rozpocznij wprowadzanie tekstu w paragrafie po zakończeniu nagłówka
+		  }
+		}
+  
+		// Funkcja do dynamicznego wprowadzania tekstu w paragrafie
+		function typeParagraph() {
+		  if (paragraphIndex < paragraphText.length) {
+			paragraphElement.textContent += paragraphText[paragraphIndex];
+			paragraphIndex++;
+			setTimeout(typeParagraph, typeSpeed.paragraph);
+		  } else {
+			localStorage.setItem("paragraphCompleted", paragraphElement.textContent);
+		  }
+		}
+  
+		// Rozpocznij dynamiczne wprowadzanie tekstu, jeśli to konieczne
+		if (!localStorage.getItem("headerCompleted")) {
+		  typeHeader();
+		} else {
+		  headerElement.textContent = localStorage.getItem("headerCompleted");
+		  typeParagraph();
+		}
+  
+		// Ustawienie flagi w localStorage, jeśli kliknięto logo
+		document.querySelector('.adrianlogo')?.addEventListener('click', () => {
+		  localStorage.setItem("logoClicked", "true");
+		});
+	  } else {
+		// Jeśli logo zostało kliknięte wcześniej, tekst nie jest generowany
+		headerElement.textContent = localStorage.getItem("headerCompleted");
+		paragraphElement.textContent = localStorage.getItem("paragraphCompleted");
+	  }
+	});
+  </script>
+  
+  
+  
+  
+  
+  
+

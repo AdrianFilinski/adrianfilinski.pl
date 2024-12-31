@@ -1,0 +1,27 @@
+---
+interface Props {
+    tags: string[];
+    activeTag?: string;
+}
+
+const { tags, activeTag } = Astro.props;
+---
+<div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+    <h2 class="text-xl font-bold mb-4">Tags</h2>
+    <div class="flex flex-col gap-2">
+        <a 
+            href="/blog" 
+            class={`px-3 py-1 rounded-full text-sm ${!activeTag ? 'bg-blue-500 text-white' : 'bg-gray-100 dark:bg-gray-700 hover:bg-blue-100 dark:hover:bg-gray-600'}`}
+        >
+            All Posts
+        </a>
+        {tags.map(tag => (
+            <a 
+                href={`/blog/tag/${tag}`}
+                class={`px-3 py-1 rounded-full text-sm ${activeTag === tag ? 'bg-blue-500 text-white' : 'bg-gray-100 dark:bg-gray-700 hover:bg-blue-100 dark:hover:bg-gray-600'}`}
+            >
+                {tag}
+            </a>
+        ))}
+    </div>
+</div>

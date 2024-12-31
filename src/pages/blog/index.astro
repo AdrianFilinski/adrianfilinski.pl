@@ -1,0 +1,37 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import BlogPostCard from '../../components/BlogPostCard.astro';
+import TagList from '../../components/TagList.astro';
+
+const posts = await Astro.glob('./*.md');
+const sortedPosts = posts.sort((a, b) => 
+    new Date(b.frontmatter.date).getTime() - new Date(a.frontmatter.date).getTime()
+);
+const allTags = [...new Set(posts.flatMap(post => post.frontmatter.tags))];
+---
+
+<Layout title="Blog - Adrian Page">
+   
+    <main class="container mx-auto px-4 py-8">
+        <h1 class="text-3xl font-bold mb-8">Blog Posts</h1>
+        <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+            <div class="lg:col-span-3">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    {sortedPosts.map(post => (
+                        <BlogPostCard 
+                            title={post.frontmatter.title}
+                            description={post.frontmatter.description}
+                            date={post.frontmatter.date}
+                            image={post.frontmatter.image}
+                            tags={post.frontmatter.tags}
+                            url={post.url}
+                        />
+                    ))}
+                </div>
+            </div>
+            <div class="lg:col-span-1">
+                <TagList tags={allTags} />
+            </div>
+        </div>
+    </main>
+</Layout>

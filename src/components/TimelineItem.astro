@@ -1,0 +1,17 @@
+---
+interface Props {
+    year: string;
+    title: string;
+    company: string;
+    description: string;
+}
+
+const { year, title, company, description } = Astro.props;
+---
+<div class="relative pl-8 pb-8 border-l border-gray-300 dark:border-gray-700 last:pb-0">
+    <div class="absolute left-[-8px] top-0 w-4 h-4 bg-blue-500 rounded-full"></div>
+    <div class="text-sm text-gray-500 dark:text-gray-400 mb-1">{year}</div>
+    <h3 class="text-xl font-bold mb-1">{title}</h3>
+    <div class="text-gray-600 dark:text-gray-300 font-medium mb-2">{company}</div>
+    <p class="text-gray-600 dark:text-gray-300">{description}</p>
+</div>
