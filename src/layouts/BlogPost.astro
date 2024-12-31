@@ -17,17 +17,6 @@ const formattedDate = new Date(frontmatter.date).toLocaleDateString('en-US', {
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{frontmatter.title}</title>
-    <script is:inline>
-      (function() {
-        if (typeof localStorage !== 'undefined') {
-          const currentTheme = localStorage.getItem('theme') ?? 'light';
-          document.documentElement.className = currentTheme;
-          if (currentTheme === 'dark') {
-            document.documentElement.classList.add('dark');
-          }
-        }
-      })();
-    </script>
   </head>
   <body class="dark:bg-gray-900 dark:text-white min-h-screen">
     <Header />
@@ -82,16 +71,7 @@ const formattedDate = new Date(frontmatter.date).toLocaleDateString('en-US', {
     <Footer />
   </body>
 </html>
-<script>
-  // Re-run theme check on client-side navigation
-  document.addEventListener('astro:after-swap', () => {
-    const currentTheme = localStorage.getItem('theme') ?? 'light';
-    document.documentElement.className = currentTheme;
-    if (currentTheme === 'dark') {
-      document.documentElement.classList.add('dark');
-    }
-  });
-</script>
+
 <style is:global>
   /* Additional styles for markdown content */
   .prose h1,
