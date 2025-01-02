@@ -11,8 +11,8 @@ const latestPosts = posts.sort((a, b) => new Date(b.frontmatter.date).getTime() 
 		<!-- Hero Section -->
 		<section class="py-20 text-center">
 			<div class="text-center my-10">
-				<h1 id="dynamic-header" class="text-4xl font-bold mb-4"></h1>
-				<p id="dynamic-paragraph" class="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto"></p>
+				<h1 id="dynamic-header" class="text-4xl font-bold mb-4">Hi, there!👋</h1>
+				<p id="dynamic-paragraph" class="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">I’d like to invite you to my blog, where I share my thoughts, ideas, and experiences about Marketing Cloud, Salesforce, AI and more. I hope you find here what you’re looking for and enjoy reading!</p>
 			  </div>
 		</section>
 
@@ -34,66 +34,7 @@ const latestPosts = posts.sort((a, b) => new Date(b.frontmatter.date).getTime() 
 		</section>
 	</main>
 </Layout>
-<script>
-	document.addEventListener("DOMContentLoaded", () => {
-	  const headerText = "Hi, there!👋";
-	  const paragraphText = "I’d like to invite you to my blog, where I share my thoughts, ideas, and experiences about Marketing Cloud, Salesforce tools, and more. I hope you find here what you’re looking for and enjoy reading!";
-  
-	  const headerElement = document.getElementById("dynamic-header");
-	  const paragraphElement = document.getElementById("dynamic-paragraph");
-  
-	  // Sprawdź, czy kliknięto logo - jeżeli tak, to nie generuj dynamicznego tekstu
-	  const logoClicked = localStorage.getItem("logoClicked");
-  
-	  // Jeśli logo nie zostało kliknięte, zaczynamy generowanie tekstu
-	  if (!logoClicked) {
-		let headerIndex = 0;
-		let paragraphIndex = 0;
-		
-		const typeSpeed = { header: 100, paragraph: 50 };
-  
-		// Funkcja do dynamicznego wprowadzania tekstu w nagłówku
-		function typeHeader() {
-		  if (headerIndex < headerText.length) {
-			headerElement.textContent += headerText[headerIndex];
-			headerIndex++;
-			setTimeout(typeHeader, typeSpeed.header);
-		  } else {
-			localStorage.setItem("headerCompleted", headerElement.textContent);
-			typeParagraph(); // Rozpocznij wprowadzanie tekstu w paragrafie po zakończeniu nagłówka
-		  }
-		}
-  
-		// Funkcja do dynamicznego wprowadzania tekstu w paragrafie
-		function typeParagraph() {
-		  if (paragraphIndex < paragraphText.length) {
-			paragraphElement.textContent += paragraphText[paragraphIndex];
-			paragraphIndex++;
-			setTimeout(typeParagraph, typeSpeed.paragraph);
-		  } else {
-			localStorage.setItem("paragraphCompleted", paragraphElement.textContent);
-		  }
-		}
-  
-		// Rozpocznij dynamiczne wprowadzanie tekstu, jeśli to konieczne
-		if (!localStorage.getItem("headerCompleted")) {
-		  typeHeader();
-		} else {
-		  headerElement.textContent = localStorage.getItem("headerCompleted");
-		  typeParagraph();
-		}
-  
-		// Ustawienie flagi w localStorage, jeśli kliknięto logo
-		document.querySelector('.adrianlogo')?.addEventListener('click', () => {
-		  localStorage.setItem("logoClicked", "true");
-		});
-	  } else {
-		// Jeśli logo zostało kliknięte wcześniej, tekst nie jest generowany
-		headerElement.textContent = localStorage.getItem("headerCompleted");
-		paragraphElement.textContent = localStorage.getItem("paragraphCompleted");
-	  }
-	});
-  </script>
+
   
   
   
